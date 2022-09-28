@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 const Forms = (props) => {
     const Country = ["India", "Australia", "Usa", "Brazil", "Canada", "Japan", "Russia"]
     const [state, setState] = useState({ email: "", password: "", country: "", tc: false, data: [], passed: 0, msg1: "", msg2: "", msg3: "", msg4: "" })
-    const AddUser = (e) => {
+    const AddUser = () => {
         if (state.msg1&&state.msg2&&state.msg3&&state.tc) {
             state.data.push({ email: state.email, password: state.password, country: state.country, tc: state.tc })
             state.email = ""
@@ -19,9 +19,7 @@ const Forms = (props) => {
         }
         state.state = false
         setState({ ...state })
-        console.log(state.data)
         console.log(state)
-        
        
     }
     const emailHandler = (e) => {
@@ -62,14 +60,20 @@ const Forms = (props) => {
 
     }
     const tcHandler = (e) => {
-        (state.tc)?setState({ ...state, tc: false }):setState({ ...state, tc: true })
+        if(state.tc)
+        {setState({ ...state, tc: false })
+ e.target.checked=true
+    }
+    else
+    {setState({ ...state, tc: true })
+    e.target.checked=false
+}   
         
     }
     return (
         <>
             <div className="col p1   bgWhite bRd5" style={{ width: "300px" }}>
                 <p className='m3'>Create Account</p>
-                <form onSubmit={(e)=>e.preventDefault()}>
                 <div className="col">
                     <label htmlFor="" style={{ textAlign: "left" }}>Email:</label>
                     <input minLength={6} maxLength={25} type="text" name="email" onChange={emailHandler} />
@@ -77,7 +81,7 @@ const Forms = (props) => {
                 </div>
                 <div className="col">
                     <label htmlFor="" style={{ textAlign: "left" }}>Password:</label>
-                    <input type="text" value={state.password} name="password" onChange={passwordHandler} />
+                    <input type="text" name="password" onChange={passwordHandler} />
                     <span className={`msg${state.msg2}`}>Create a valid password</span>
                 </div>
                 <div className="col" >
@@ -94,9 +98,8 @@ const Forms = (props) => {
                         <p className='tc'>I accept the term & service</p>
                     </div>
                     <span className={`msg${state.msg4}`}>T&C Not Accepted</span>
-                    <button className="btn btn-info" type='reset' onClick={AddUser}>Submit</button>
+                    <button className="btn btn-info" type='button' onClick={AddUser}>Submit</button>
                 </div>
-                </form>
             </div>
         </>
     )
