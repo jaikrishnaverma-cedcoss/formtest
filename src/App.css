@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+label,button,.dd{
+  font-size: 14px;
+  margin-top: 4%;
+}
+
+.checkbox,.tc{
+  margin: 5px;
+  padding: 0px;
+  min-width: 0px;
+}
+span.msg{
+  display: none;
+}
+span.msgtrue{
+display: none;
+font-size: 12px;
+}
+span.msgfalse{
+  color:red;
+  font-size: 12px;
+}
